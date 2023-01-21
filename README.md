@@ -55,7 +55,7 @@ I followed the guide from [gemartin99/Born2beroot-Tutorial](https://github.com/g
 * Your virtual machine must be created in the 'sgoinfre' folder to avoid future installation problems.
 * I chose the debian operating system because it is highly recommended for users who are new to system administration as it is easier to install and configure than Rocky.
 
-#### Configuring the Vm in VirtualBox:
+#### :wrench: Configuring the Vm in VirtualBox:
   * Name: Born2beroot.
   * Type of OS: Linux.
   * Version: Debian (64-bit).
@@ -86,12 +86,31 @@ I followed the guide from [gemartin99/Born2beroot-Tutorial](https://github.com/g
 * Remove all the software options
 * Install GRUB boot in the hard disk and choose the option "/dev/sda(ATA_VBOX_HARDDISK)"
 
-### Configuring a virtual machine
+### :wrench: Configuring a virtual machine
 * Insert the encrypted password
 * Enter in the user you created
 * To enter in the root user you use "su" and put the password
 
 #### :busts_in_silhouette: Installing sudo and configuring users
+ * `<apt install sudo>`: to install the necessary packages
+ * `<sudo reboot>` : restart the machine to apply the changes
+ * `<sudo -V>`: will show you the version of sudo
+ * `<sudo adduser {your_user}>`: it must show that your user already exists
+ * `<sudo addgroup user42>`: create a group called "user 42"
 
+  :mag: GID is the group identifier, is an abbreviation of GroupID
+	
+* `<sudo adduser {your_user} {group}>`: we will add the user to the group
+* `<sudo adduser {your_user} {sudo}>`: add sudo group too
+* `<getent group {user42}>`: seeing if the user is in the group
+* `<getent group {sudo}>`: seeing if the user is in the group
+* ´<sudo apt update>`: Updates the package sources with their new versions in the repositories
+  
+#### :satellite: Installation and configuration SSH
+  :mag: SSH is remote access to a server by a safe channel, in which all the information will be encrypted
 
-
+*`<sudo apt install openssh-server>`: installing OpenSSH which is the main connectivity tool for remote session initiation with the SSH protocol
+* `<sudo service ssh status>`: to verify if the installation sucedded (it musta appear as active)
+* `<nano /etc/ssh/sshd_config>`: We will have to access a file called "sshd_config", for this we insert the path 
+  - Change the "#Port 22" to "Port 4242"
+  - Change the "#PermitRootLogin prohibit-password" to "PermitRootLogin no"
